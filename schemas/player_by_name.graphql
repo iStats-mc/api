@@ -1,0 +1,60 @@
+query player($name: String!) {
+    playerByUsername(username: $name) {
+        uuid
+        username
+        ranks
+        collections {
+            currency {
+                coins
+                gems
+                materialDust
+                royalReputation
+                silver
+            }
+        }
+
+        crownLevel {
+            level
+            trophies {
+                obtained
+                obtainable
+                bonus
+            }
+            nextEvolutionLevel
+            nextLevelProgress {
+                obtainable
+                obtained
+            }
+        }
+
+        status {
+            online
+            server {
+                associatedGame
+                category
+                subType
+            }
+
+            firstJoin
+            lastJoin
+        }
+        social {
+            friends {
+                username
+                uuid
+            }
+
+            party {
+                active
+                leader {
+                    username
+                    uuid
+                }
+                members {
+                    username
+                    uuid
+                }
+            }
+        }
+    }
+}
