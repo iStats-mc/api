@@ -87,7 +87,10 @@ async fn get_player(path: web::Path<String>, data: Data<IStatsApiState>) -> impl
 
 #[actix_web::main]
 async fn main() -> io::Result<()> {
-    env_logger::init();
+    let env = env_logger::Env::default()
+        .filter_or("LOG_LEVEL", "info");
+
+    env_logger::init_from_env(env);
     
     let api_key = dotenv!("MCCI_API_KEY").to_string();
     let by_name_query = fs::read_to_string("./schemas/player_by_name.graphql")?;
